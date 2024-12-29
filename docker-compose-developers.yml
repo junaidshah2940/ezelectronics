@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  client:
+    build:
+      context: ./code/client
+    ports:
+      - "3000:3000"
+    networks:
+      - ezelectronics-network
+  server:
+    build:
+      context: ./code/server
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./code/server:/app/code/server
+    networks:
+      - ezelectronics-network
+
+networks:
+  ezelectronics-network:
+    driver: bridge
+
+# sudo docker compose -f docker-compose-developers.yml up --build
